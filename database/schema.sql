@@ -1,6 +1,3 @@
-create database task_db;
-use task_db;
-
 CREATE TABLE IF NOT EXISTS statuses (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(50) NOT NULL UNIQUE,
