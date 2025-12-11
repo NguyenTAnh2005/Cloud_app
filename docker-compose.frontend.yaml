@@ -1,0 +1,12 @@
+version: "3.9"
+services:
+  frontend:
+    build: ./frontend
+    container_name: task-frontend
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    environment:
+      # Đây là biến sẽ được bơm vào file nginx template
+      # Thay 10.118.x.x bằng IP Private hoặc Public của máy EC2 Backend
+      - BACKEND_HOST=${BACKEND_IP_ADDRESS}

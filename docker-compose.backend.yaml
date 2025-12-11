@@ -1,0 +1,22 @@
+version: "3.9"
+services:
+  backend:
+    build: ./backend
+    container_name: task-backend
+    restart: unless-stopped
+    ports:
+      - "8000:8000" # Phải mở cổng ra để máy Frontend (EC2 khác) gọi vào
+    env_file: .env  # Đọc file .env nằm cùng thư mục trên server
+    depends_on:
+      - db
+
+  db:
+    image: mysql:8.0
+    container_name: task-db
+    restart: unless-stopped
+    env_file: .env
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+volumes:
+  mysql_data:
